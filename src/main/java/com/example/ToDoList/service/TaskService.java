@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,4 +34,12 @@ public class TaskService {
         taskRepository.save(task);
     }
 
+    public void deleteTask(Long id) {
+        Optional<Task> task = taskRepository.findById(id);
+        try {
+            taskRepository.delete(task.get());
+        } catch (NoSuchElementException ex) {
+            throw new NoSuchElementException("Task with id: " + id + " not found");
+        }
+    }
 }
