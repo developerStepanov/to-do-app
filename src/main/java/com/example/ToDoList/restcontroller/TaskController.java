@@ -27,14 +27,17 @@ public class TaskController {
     }
 
     @DeleteMapping("/task/{id}")
-    public void deleteTask(@PathVariable Long id) {
-        taskService.deleteTask(id);
-    }
+    public void deleteTask(@PathVariable Long id) {taskService.deleteTask(id);}
 
     @ExceptionHandler({NoSuchElementException.class})
     @ResponseBody
-    public ResponseEntity<String> handleNotFindResourceException(Exception ex) {
-        System.out.println("The error with exception: " + ex.getMessage());
-        return new ResponseEntity<>("An error occurred: " + ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<String> handleNotFindResourceException(Exception e) {
+        System.out.println("The error with exception: " + e.getMessage());
+        return new ResponseEntity<>("An error occurred: " + e.getMessage(), HttpStatus.NOT_FOUND);
     }
+    //сделать updateTask // @PutMapping
+
+//    @PutMapping("/task")
+
+
 }

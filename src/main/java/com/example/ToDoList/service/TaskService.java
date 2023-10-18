@@ -38,7 +38,7 @@ public class TaskService {
         Optional<Task> task = taskRepository.findById(id);
         try {
             taskRepository.delete(task.get());
-        } catch (NoSuchElementException ex) {
+        } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Task with id: " + id + " not found");
         }
     }
